@@ -1,0 +1,1636 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="night">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="EMRAT AIRPORT.com — Luxury International Airport Digital Shopping & Travel Experience. Explore, Fly, Shop, Eat, and Experience." />
+  <title>EMRAT AIRPORT — Luxury International Concourse & Shopping Portal</title>
+  
+  <!-- Fonts: Plus Jakarta Sans & Space Grotesk -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Custom Cursor Elements -->
+  <div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
+  <div class="cursor-ring" id="cursorRing" aria-hidden="true"></div>
+
+  <!-- Scroll Progress Bar -->
+  <div class="scroll-progress-container" aria-hidden="true">
+    <div class="scroll-progress-bar" id="scrollProgressBar"></div>
+  </div>
+
+  <!-- Top Terminal Announcement Bar -->
+  <div class="terminal-ticker-bar" role="region" aria-label="Terminal Announcements">
+    <div class="ticker-content">
+      <span class="ticker-badge"><span class="pulse-dot"></span> LIVE CONCOURSE FEED</span>
+      <span class="ticker-text">WELCOME TO EMRAT AIRPORT (EIA) • ALL CONCOURSES OPERATIONAL • DUTY-FREE GATEWAY PROMOTION: 15% OFF LUXURY COLLECTIONS • COMPLIMENTARY LOUNGE PASS WITH PURCHASES OVER $250 • DEMO AIRPORT PLATFORM</span>
+    </div>
+    <div class="ticker-right">
+      <span class="clock-display" id="terminalLiveClock">UTC --:--:--</span>
+      <span class="status-chip"><span class="chip-dot"></span> GATE READY</span>
+    </div>
+  </div>
+
+  <!-- Main Navigation Header -->
+  <header class="site-header" id="mainHeader">
+    <div class="nav-container">
+      <!-- Brand Logo -->
+      <a href="#hero" class="brand-logo" aria-label="EMRAT AIRPORT Home">
+        <div class="logo-symbol">
+          <!-- Sleek Airport Wings / Supersonic Silhouette SVG -->
+          <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" class="logo-svg">
+            <path d="M4 24L20 20L44 8L36 24L44 40L20 28L4 24Z" fill="url(#logoGrad)" />
+            <path d="M20 20L28 24L20 28V20Z" fill="#00E5FF" />
+            <circle cx="36" cy="24" r="2" fill="#E6C687" />
+            <defs>
+              <linearGradient id="logoGrad" x1="4" y1="8" x2="44" y2="40" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#E6C687" />
+                <stop offset="0.5" stop-color="#FFFFFF" />
+                <stop offset="1" stop-color="#00E5FF" />
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+        <div class="logo-text-group">
+          <span class="logo-brand">EMRAT</span>
+          <span class="logo-sub">AIRPORT<span class="logo-tld">.COM</span></span>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation Menu -->
+      <nav class="main-nav" aria-label="Primary Navigation">
+        <ul class="nav-list">
+          <li><a href="#hero" class="nav-link active">Home</a></li>
+          <li><a href="#journey" class="nav-link">Journey</a></li>
+          <li><a href="#categories" class="nav-link">Categories</a></li>
+          <li><a href="#catalog" class="nav-link">Duty Free Shop</a></li>
+          <li><a href="#food-market" class="nav-link">Food Market</a></li>
+          <li><a href="#toy-world" class="nav-link">Toy World</a></li>
+          <li><a href="#luxury" class="nav-link">Luxury Concourse</a></li>
+          <li><a href="#flight-board" class="nav-link">FIDS Board</a></li>
+          <li><a href="#services" class="nav-link">Services</a></li>
+        </ul>
+      </nav>
+
+      <!-- Nav Actions (Search, Currency, Wishlist, Cart, Theme, Mobile Hamburger) -->
+      <div class="nav-actions">
+        <!-- Search Trigger -->
+        <button class="action-btn icon-btn" id="openSearchBtn" aria-label="Search catalog" title="Search (Press /)">
+          <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+        </button>
+
+        <!-- Currency Selector -->
+        <div class="currency-dropdown-wrap">
+          <select id="currencySelector" class="currency-select" aria-label="Select Currency">
+            <option value="USD">USD ($)</option>
+            <option value="EUR">EUR (€)</option>
+            <option value="GBP">GBP (£)</option>
+            <option value="AED">AED (AED)</option>
+            <option value="JPY">JPY (¥)</option>
+          </select>
+        </div>
+
+        <!-- Wishlist Button -->
+        <button class="action-btn icon-btn" id="wishlistTriggerBtn" aria-label="View Wishlist" title="Your Wishlist">
+          <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none">
+            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+          </svg>
+          <span class="badge-count" id="wishlistCount">0</span>
+        </button>
+
+        <!-- Slide-out Cart Button -->
+        <button class="action-btn icon-btn cart-btn" id="cartTriggerBtn" aria-label="Open Airport Shopping Cart" title="Shopping Cart">
+          <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none">
+            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <path d="M16 10a4 4 0 0 1-8 0"></path>
+          </svg>
+          <span class="badge-count" id="cartCount">0</span>
+        </button>
+
+        <!-- Theme Mode Toggle -->
+        <button class="action-btn theme-toggle-btn" id="themeToggleBtn" aria-label="Switch between Airport Night and Airport Day" title="Toggle Theme">
+          <span class="theme-icon moon-icon">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            </svg>
+          </span>
+          <span class="theme-icon sun-icon">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="5"></circle>
+              <line x1="12" y1="1" x2="12" y2="3"></line>
+              <line x1="12" y1="21" x2="12" y2="23"></line>
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+              <line x1="1" y1="12" x2="3" y2="12"></line>
+              <line x1="21" y1="12" x2="23" y2="12"></line>
+              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+            </svg>
+          </span>
+          <span class="theme-label" id="themeLabelText">Night</span>
+        </button>
+
+        <!-- Mobile Hamburger Button -->
+        <button class="action-btn mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle mobile menu" aria-expanded="false">
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Drawer Navigation -->
+    <div class="mobile-nav-drawer" id="mobileNavDrawer" aria-hidden="true">
+      <ul class="mobile-nav-list">
+        <li><a href="#hero" class="mobile-nav-link">Home Terminal</a></li>
+        <li><a href="#journey" class="mobile-nav-link">Your Journey</a></li>
+        <li><a href="#categories" class="mobile-nav-link">Concourse Categories</a></li>
+        <li><a href="#catalog" class="mobile-nav-link">Duty Free Catalog</a></li>
+        <li><a href="#food-market" class="mobile-nav-link">D1 Food Market</a></li>
+        <li><a href="#toy-world" class="mobile-nav-link">E1 Toy World</a></li>
+        <li><a href="#luxury" class="mobile-nav-link">Luxury Concourse</a></li>
+        <li><a href="#flight-board" class="mobile-nav-link">FIDS Departures</a></li>
+        <li><a href="#services" class="mobile-nav-link">Passenger Services</a></li>
+        <li><a href="#travel-club" class="mobile-nav-link">Travel Club</a></li>
+      </ul>
+      <div class="mobile-drawer-footer">
+        <div class="drawer-demo-note">Demo Terminal Experience — 2026</div>
+      </div>
+    </div>
+  </header>
+
+  <main id="mainContent">
+    <!-- 3. HERO SECTION (Cinematic, Animated Parallax, Plane Flight Path, Destinations) -->
+    <section class="hero-section" id="hero">
+      <!-- Animated Sky & Terminal Background Canvas / Layers -->
+      <div class="hero-backdrop" aria-hidden="true">
+        <div class="hero-stars-overlay"></div>
+        <div class="hero-aurora-glow"></div>
+        <div class="hero-runway-grid"></div>
+
+        <!-- Animated Airplane Silhouette with Contrail -->
+        <div class="hero-flight-track">
+          <div class="hero-airplane-wrap" id="heroAirplane">
+            <svg class="hero-plane-svg" viewBox="0 0 120 120" fill="none">
+              <path d="M60 10 L70 45 L115 65 L70 72 L68 100 L80 110 L60 106 L40 110 L52 100 L50 72 L5 65 L50 45 Z" fill="url(#planeShine)" />
+              <circle cx="60" cy="18" r="3" fill="#00E5FF" />
+              <defs>
+                <linearGradient id="planeShine" x1="5" y1="10" x2="115" y2="110" gradientUnits="userSpaceOnUse">
+                  <stop stop-color="#FFFFFF" />
+                  <stop offset="0.6" stop-color="#E2E8F0" />
+                  <stop offset="1" stop-color="#94A3B8" />
+                </linearGradient>
+              </defs>
+            </svg>
+            <div class="plane-contrail"></div>
+            <div class="plane-beacon"></div>
+          </div>
+        </div>
+
+        <!-- Floating Destination Badges -->
+        <div class="hero-destinations-wrap">
+          <div class="dest-card dest-card-1" data-tilt>
+            <div class="dest-badge-header">
+              <span class="dest-code">DXB</span>
+              <span class="dest-badge-dot"></span>
+              <span class="dest-status">ON TIME</span>
+            </div>
+            <div class="dest-city">DUBAI</div>
+            <div class="dest-meta">Gate B04 • Flight EA 202</div>
+          </div>
+
+          <div class="dest-card dest-card-2" data-tilt>
+            <div class="dest-badge-header">
+              <span class="dest-code">HND</span>
+              <span class="dest-badge-dot pulse"></span>
+              <span class="dest-status boarding">BOARDING</span>
+            </div>
+            <div class="dest-city">TOKYO</div>
+            <div class="dest-meta">Gate A12 • Flight EA 884</div>
+          </div>
+
+          <div class="dest-card dest-card-3" data-tilt>
+            <div class="dest-badge-header">
+              <span class="dest-code">LHR</span>
+              <span class="dest-badge-dot"></span>
+              <span class="dest-status">GATE OPEN</span>
+            </div>
+            <div class="dest-city">LONDON</div>
+            <div class="dest-meta">Gate C18 • Flight EA 101</div>
+          </div>
+
+          <div class="dest-card dest-card-4" data-tilt>
+            <div class="dest-badge-header">
+              <span class="dest-code">SIN</span>
+              <span class="dest-badge-dot pulse"></span>
+              <span class="dest-status boarding">FINAL CALL</span>
+            </div>
+            <div class="dest-city">SINGAPORE</div>
+            <div class="dest-meta">Gate A07 • Flight EA 330</div>
+          </div>
+
+          <div class="dest-card dest-card-5" data-tilt>
+            <div class="dest-badge-header">
+              <span class="dest-code">JFK</span>
+              <span class="dest-badge-dot"></span>
+              <span class="dest-status">ON TIME</span>
+            </div>
+            <div class="dest-city">NEW YORK</div>
+            <div class="dest-meta">Gate D02 • Flight EA 007</div>
+          </div>
+
+          <div class="dest-card dest-card-6" data-tilt>
+            <div class="dest-badge-header">
+              <span class="dest-code">CDG</span>
+              <span class="dest-badge-dot"></span>
+              <span class="dest-status">GATE OPEN</span>
+            </div>
+            <div class="dest-city">PARIS</div>
+            <div class="dest-meta">Gate B15 • Flight EA 412</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Hero Content Container -->
+      <div class="hero-container">
+        <div class="hero-glass-panel">
+          <div class="hero-badge">
+            <span class="hero-badge-icon">✈</span>
+            <span class="hero-badge-text">5-STAR INTERNATIONAL DIGITAL CONCOURSE</span>
+          </div>
+
+          <h1 class="hero-title">
+            <span class="hero-title-sub">WELCOME TO</span>
+            <span class="hero-title-main">EMRAT AIRPORT</span>
+          </h1>
+
+          <p class="hero-tagline">
+            Your journey begins beyond the gate.
+          </p>
+
+          <p class="hero-description">
+            Explore products, discover experiences, eat, shop and travel in luxury. Immerse yourself in the world’s most advanced airport retail sanctuary.
+          </p>
+
+          <div class="hero-cta-group">
+            <a href="#catalog" class="btn btn-primary btn-glow">
+              <span class="btn-text">EXPLORE PRODUCTS</span>
+              <span class="btn-icon">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+              </span>
+            </a>
+            <a href="#journey" class="btn btn-secondary">
+              <span class="btn-text">START EXPLORING</span>
+              <span class="btn-icon">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="10"/>
+                  <polygon points="10 8 16 12 10 16 10 8"/>
+                </svg>
+              </span>
+            </a>
+          </div>
+
+          <!-- Hero Quick Stats / Concourse Metrics -->
+          <div class="hero-stats-row">
+            <div class="stat-item">
+              <span class="stat-number" data-target="48">0</span><span class="stat-suffix">+</span>
+              <span class="stat-label">Luxury Brands</span>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat-item">
+              <span class="stat-number" data-target="8">0</span>
+              <span class="stat-label">Concourse Zones</span>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat-item">
+              <span class="stat-number" data-target="100">0</span><span class="stat-suffix">%</span>
+              <span class="stat-label">Gate Delivery Ready</span>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat-item">
+              <span class="stat-number" data-target="0">0</span><span class="stat-suffix">%</span>
+              <span class="stat-label">Tax / Duty Free</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Hero Scroll Down Indicator -->
+      <a href="#journey" class="hero-scroll-indicator" aria-label="Scroll to Journey section">
+        <span class="scroll-mouse">
+          <span class="scroll-wheel"></span>
+        </span>
+        <span class="scroll-text">DISCOVER CONCOURSE</span>
+      </a>
+    </section>
+
+    <!-- 4. ANIMATED FLIGHT EXPERIENCE (YOUR JOURNEY STARTS HERE) -->
+    <section class="section journey-section" id="journey">
+      <div class="section-container">
+        <div class="section-header text-center" data-reveal>
+          <div class="section-badge">INTERACTIVE CONCOURSE PATHWAY</div>
+          <h2 class="section-title">YOUR JOURNEY STARTS HERE</h2>
+          <p class="section-subtitle">
+            From curb to cruising altitude: follow the seamless progression through EMRAT Airport’s state-of-the-art terminal environment.
+          </p>
+        </div>
+
+        <!-- The 7-Stage Interactive Journey Timeline -->
+        <div class="journey-timeline-wrapper" data-reveal>
+          <!-- SVG Connecting Flight Path -->
+          <div class="journey-progress-track">
+            <div class="journey-progress-fill" id="journeyProgressFill"></div>
+            <div class="journey-plane-indicator" id="journeyPlaneIndicator">✈</div>
+          </div>
+
+          <div class="journey-steps-grid">
+            <!-- Stage 1: Check-in -->
+            <div class="journey-step-card active" data-step="1">
+              <div class="step-num-badge">01</div>
+              <div class="step-icon-wrap">
+                <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
+                  <circle cx="12" cy="13" r="2"></circle>
+                </svg>
+              </div>
+              <h3 class="step-title">CHECK-IN</h3>
+              <p class="step-desc">Biometric drop-off, instant digital boarding pass & seamless bag tagging.</p>
+              <div class="step-tip">Estimated time: 2 min</div>
+            </div>
+
+            <!-- Stage 2: Security -->
+            <div class="journey-step-card" data-step="2">
+              <div class="step-num-badge">02</div>
+              <div class="step-icon-wrap">
+                <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                </svg>
+              </div>
+              <h3 class="step-title">SECURITY</h3>
+              <p class="step-desc">AI-powered 3D computed tomography scanning without removing liquids or electronics.</p>
+              <div class="step-tip">Smart FastTrack</div>
+            </div>
+
+            <!-- Stage 3: Explore -->
+            <div class="journey-step-card" data-step="3">
+              <div class="step-num-badge">03</div>
+              <div class="step-icon-wrap">
+                <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon>
+                </svg>
+              </div>
+              <h3 class="step-title">EXPLORE</h3>
+              <p class="step-desc">Stroll the botanical concourse, ambient indoor waterfalls, and luxury architecture.</p>
+              <div class="step-tip">Terminal Gardens</div>
+            </div>
+
+            <!-- Stage 4: Shop -->
+            <div class="journey-step-card" data-step="4">
+              <div class="step-num-badge">04</div>
+              <div class="step-icon-wrap">
+                <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+                  <line x1="3" y1="6" x2="21" y2="6"></line>
+                  <path d="M16 10a4 4 0 0 1-8 0"></path>
+                </svg>
+              </div>
+              <h3 class="step-title">SHOP</h3>
+              <p class="step-desc">Tax-free luxury boutiques, cutting-edge electronics, toys, and travel essentials.</p>
+              <div class="step-tip">Duty-Free Exclusive</div>
+            </div>
+
+            <!-- Stage 5: Eat -->
+            <div class="journey-step-card" data-step="5">
+              <div class="step-num-badge">05</div>
+              <div class="step-icon-wrap">
+                <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M18 8h1a4 4 0 0 1 0 8h-1"></path>
+                  <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path>
+                  <line x1="6" y1="1" x2="6" y2="4"></line>
+                  <line x1="10" y1="1" x2="10" y2="4"></line>
+                  <line x1="14" y1="1" x2="14" y2="4"></line>
+                </svg>
+              </div>
+              <h3 class="step-title">EAT</h3>
+              <p class="step-desc">World-class gastronomy, pre-flight meal trays, artisan bakeries, and fine espresso.</p>
+              <div class="step-tip">Order to Gate</div>
+            </div>
+
+            <!-- Stage 6: Board -->
+            <div class="journey-step-card" data-step="6">
+              <div class="step-num-badge">06</div>
+              <div class="step-icon-wrap">
+                <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M2 17l10 3 10-3V7l-10 3-10-3v10z"></path>
+                  <path d="M12 10v10"></path>
+                </svg>
+              </div>
+              <h3 class="step-title">BOARD</h3>
+              <p class="step-desc">Your shopping bags delivered directly to your gate seat with biometric boarding call.</p>
+              <div class="step-tip">Zero Luggage Stress</div>
+            </div>
+
+            <!-- Stage 7: Fly -->
+            <div class="journey-step-card" data-step="7">
+              <div class="step-num-badge">07</div>
+              <div class="step-icon-wrap">
+                <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M17.8 19.2L16 11l3.5-3.5C21 6 21.5 4 21 3.5c-.5-.5-2.5 0-4 1.5L13.5 8.5 5.3 6.7c-.8-.2-1.6.3-1.8 1.1-.2.8.2 1.6 1 1.9l5.5 3.3-3 3-2.5-.5c-.5-.1-1 .2-1.2.7-.2.5 0 1 .4 1.4l2.5 2.5 2.5 2.5c.4.4.9.6 1.4.4.5-.2.8-.7.7-1.2l-.5-2.5 3-3 3.3 5.5c.3.8 1.1 1.2 1.9 1 .8-.2 1.3-1 1.1-1.8z"></path>
+                </svg>
+              </div>
+              <h3 class="step-title">FLY</h3>
+              <p class="step-desc">Sit back, enjoy high-altitude comfort, and arrive refreshed at your destination.</p>
+              <div class="step-tip">Safe Travels</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 18. FLIGHT-STYLE INFORMATION PANEL (FIDS BOARD) -->
+    <section class="section fids-section" id="flight-board">
+      <div class="section-container">
+        <div class="fids-cabinet" data-reveal>
+          <div class="fids-header">
+            <div class="fids-branding">
+              <span class="fids-plane-icon">✈</span>
+              <div>
+                <span class="fids-title">EMRAT INTERNATIONAL FLIGHT DEPARTURES</span>
+                <span class="fids-subtitle">TERMINAL 3 • DIGITAL DEPARTURE CONCOURSE</span>
+              </div>
+            </div>
+            <div class="fids-controls">
+              <span class="fids-live-tag"><span class="pulse-dot"></span> LIVE TICKER</span>
+              <button class="fids-refresh-btn" id="refreshFidsBtn" title="Simulate board update">
+                <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none">
+                  <path d="M23 4v6h-6M1 20v-6h6"></path>
+                  <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path>
+                </svg>
+                REFRESH BOARD
+              </button>
+            </div>
+          </div>
+
+          <!-- The Flight Board Table -->
+          <div class="fids-table-wrap">
+            <table class="fids-table" aria-label="Flight Departures Board">
+              <thead>
+                <tr>
+                  <th scope="col">TIME</th>
+                  <th scope="col">FLIGHT</th>
+                  <th scope="col">DESTINATION</th>
+                  <th scope="col">GATE</th>
+                  <th scope="col">ZONE</th>
+                  <th scope="col">STATUS</th>
+                  <th scope="col">DUTY-FREE SERVICE</th>
+                </tr>
+              </thead>
+              <tbody id="fidsTableBody">
+                <!-- Populated dynamically via JS -->
+              </tbody>
+            </table>
+          </div>
+
+          <div class="fids-footer">
+            <span class="fids-disclaimer">
+              ℹ Demo data — connect an airport/product API for live information.
+            </span>
+            <span class="fids-updated-time" id="fidsUpdatedTime">Last Synchronized: Just now</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. MAIN CATEGORY EXPLORER SYSTEM -->
+    <section class="section categories-section" id="categories">
+      <div class="section-container">
+        <div class="section-header" data-reveal>
+          <div class="section-badge">CONCOURSE DIRECTORY</div>
+          <h2 class="section-title">EXPLORE BY CATEGORY CODE</h2>
+          <p class="section-subtitle">
+            Navigate through EMRAT Airport’s dedicated retail wings with military precision and luxury curated assortments.
+          </p>
+        </div>
+
+        <div class="categories-grid" id="categoriesGrid">
+          <!-- Populated via script.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- 16. DAILY TRAVELER SECTION (MADE FOR YOUR JOURNEY) -->
+    <section class="section personas-section" id="personas">
+      <div class="section-container">
+        <div class="section-header text-center" data-reveal>
+          <div class="section-badge">CURATED FOR YOU</div>
+          <h2 class="section-title">MADE FOR YOUR JOURNEY</h2>
+          <p class="section-subtitle">
+            Select your traveler profile to instantly personalize the concourse catalog with gear engineered for your exact route.
+          </p>
+        </div>
+
+        <!-- Persona Switcher Tabs -->
+        <div class="persona-tabs-wrap" data-reveal>
+          <div class="persona-tabs" role="tablist" aria-label="Traveler Personas">
+            <button class="persona-tab-btn active" role="tab" aria-selected="true" data-persona="commuter">
+              <span class="persona-emoji">💼</span>
+              <span class="persona-tab-title">DAILY COMMUTER</span>
+            </button>
+            <button class="persona-tab-btn" role="tab" aria-selected="false" data-persona="business">
+              <span class="persona-emoji">👔</span>
+              <span class="persona-tab-title">BUSINESS TRAVELER</span>
+            </button>
+            <button class="persona-tab-btn" role="tab" aria-selected="false" data-persona="family">
+              <span class="persona-emoji">👨‍👩‍👧‍👦</span>
+              <span class="persona-tab-title">FAMILY TRAVELER</span>
+            </button>
+            <button class="persona-tab-btn" role="tab" aria-selected="false" data-persona="weekend">
+              <span class="persona-emoji">🎒</span>
+              <span class="persona-tab-title">WEEKEND EXPLORER</span>
+            </button>
+            <button class="persona-tab-btn" role="tab" aria-selected="false" data-persona="international">
+              <span class="persona-emoji">🌐</span>
+              <span class="persona-tab-title">INTERNATIONAL TRAVELER</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Persona Spotlight Banner & Recommendations -->
+        <div class="persona-content-box" id="personaContentBox" data-reveal>
+          <!-- Dynamic info populated via JS -->
+        </div>
+
+        <div class="persona-products-grid" id="personaProductsGrid" data-reveal>
+          <!-- Dynamic product cards populated via JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- 6 & 7 & 10 & 11. MAIN PRODUCT CATALOG, SEARCH & FILTER SYSTEM -->
+    <section class="section catalog-section" id="catalog">
+      <div class="section-container">
+        <div class="section-header" data-reveal>
+          <div class="section-badge">TAX-FREE DIGITAL TERMINAL</div>
+          <h2 class="section-title">DUTY FREE PRODUCT CATALOG</h2>
+          <p class="section-subtitle">
+            Shop certified airport inventory across electronics, fashion, toys, food, luxury, and travel essentials with gate delivery.
+          </p>
+        </div>
+
+        <!-- Filter & Search Toolbar -->
+        <div class="catalog-toolbar" data-reveal>
+          <!-- Search Bar -->
+          <div class="catalog-search-wrap">
+            <svg class="search-svg" viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            <input 
+              type="text" 
+              id="catalogSearchInput" 
+              class="catalog-search-input" 
+              placeholder="Search products, food, toys, travel essentials..." 
+              aria-label="Search catalog products"
+            />
+            <button class="clear-search-btn" id="clearSearchBtn" aria-label="Clear search query" style="display: none;">✕</button>
+          </div>
+
+          <!-- Quick Filters Toggle for Mobile -->
+          <button class="btn btn-secondary filter-toggle-btn" id="mobileFilterToggleBtn">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+              <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon>
+            </svg>
+            Filters
+          </button>
+
+          <!-- Sorting Controls -->
+          <div class="sort-wrap">
+            <label for="sortSelect" class="sort-label">Sort by:</label>
+            <select id="sortSelect" class="sort-select" aria-label="Sort products">
+              <option value="featured">Featured / Curated</option>
+              <option value="price-asc">Price: Low → High</option>
+              <option value="price-desc">Price: High → Low</option>
+              <option value="rating">Highest Rated</option>
+              <option value="discount">Biggest Savings</option>
+              <option value="popular">Most Popular</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Catalog Body Layout (Sidebar Filters + Product Grid) -->
+        <div class="catalog-layout">
+          <!-- Sidebar Filters -->
+          <aside class="catalog-sidebar" id="catalogSidebar">
+            <div class="sidebar-header-mobile">
+              <h3>Filter Products</h3>
+              <button class="close-sidebar-btn" id="closeSidebarBtn">✕</button>
+            </div>
+
+            <!-- Category Filter Pills -->
+            <div class="filter-group">
+              <h4 class="filter-group-title">Category</h4>
+              <div class="filter-category-list" id="filterCategoryList">
+                <button class="filter-pill active" data-category="all">All Items (<span id="allCount">0</span>)</button>
+                <button class="filter-pill" data-category="toys">E1 — Toys</button>
+                <button class="filter-pill" data-category="food">D1 — Food</button>
+                <button class="filter-pill" data-category="fashion">F1 — Fashion</button>
+                <button class="filter-pill" data-category="travel">T1 — Travel Essentials</button>
+                <button class="filter-pill" data-category="electronics">E2 — Electronics</button>
+                <button class="filter-pill" data-category="gifts">G1 — Gifts</button>
+                <button class="filter-pill" data-category="beauty">B1 — Beauty & Care</button>
+                <button class="filter-pill" data-category="luxury">L1 — Luxury</button>
+              </div>
+            </div>
+
+            <!-- Price Slider Filter -->
+            <div class="filter-group">
+              <div class="filter-group-header">
+                <h4 class="filter-group-title">Max Price</h4>
+                <span class="price-val-display" id="priceDisplayValue">$2,500</span>
+              </div>
+              <input type="range" id="priceRangeSlider" class="range-slider" min="10" max="2500" step="10" value="2500" aria-label="Max price filter" />
+              <div class="range-bounds">
+                <span>$10</span>
+                <span>$2,500+</span>
+              </div>
+            </div>
+
+            <!-- Rating Filter -->
+            <div class="filter-group">
+              <h4 class="filter-group-title">Minimum Rating</h4>
+              <div class="filter-rating-options">
+                <label class="radio-label">
+                  <input type="radio" name="ratingFilter" value="0" checked />
+                  <span>All Ratings</span>
+                </label>
+                <label class="radio-label">
+                  <input type="radio" name="ratingFilter" value="4.5" />
+                  <span>★ 4.5 & Above</span>
+                </label>
+                <label class="radio-label">
+                  <input type="radio" name="ratingFilter" value="4.0" />
+                  <span>★ 4.0 & Above</span>
+                </label>
+              </div>
+            </div>
+
+            <!-- In Stock / Deals Only -->
+            <div class="filter-group">
+              <h4 class="filter-group-title">Availability & Offers</h4>
+              <label class="checkbox-label">
+                <input type="checkbox" id="inStockCheckbox" />
+                <span>In Stock & Gate Ready</span>
+              </label>
+              <label class="checkbox-label">
+                <input type="checkbox" id="discountCheckbox" />
+                <span>Special Duty-Free Deals</span>
+              </label>
+            </div>
+
+            <!-- Reset Filters Button -->
+            <button class="btn btn-outline btn-full reset-filters-btn" id="resetFiltersBtn">
+              Reset All Filters
+            </button>
+          </aside>
+
+          <!-- Main Products Grid Area -->
+          <div class="catalog-main">
+            <!-- Active Filter Chips Bar -->
+            <div class="active-filters-bar" id="activeFiltersBar">
+              <span class="results-count" id="resultsCountText">Showing 0 products</span>
+              <div class="chips-container" id="activeChipsContainer"></div>
+            </div>
+
+            <!-- Product Grid -->
+            <div class="products-grid" id="productsGrid" aria-live="polite">
+              <!-- Rendered dynamically by script.js -->
+            </div>
+
+            <!-- No Products State -->
+            <div class="no-products-state" id="noProductsState" style="display: none;">
+              <div class="no-products-icon">✈️</div>
+              <h3 class="no-products-title">No products found</h3>
+              <p class="no-products-desc">We couldn't find any products matching your current filters and search query.</p>
+              <button class="btn btn-primary" id="emptyStateResetBtn">Reset Search & Filters</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 13. D1 — AIRPORT FOOD MARKET & "WHAT'S ON YOUR TRAY?" -->
+    <section class="section food-section" id="food-market">
+      <div class="section-container">
+        <div class="section-header" data-reveal>
+          <div class="section-badge">D1 — GASTRONOMY CONCOURSE</div>
+          <h2 class="section-title">AIRPORT FOOD MARKET</h2>
+          <p class="section-subtitle">
+            Experience Michelin-inspired passenger dining, healthy high-altitude bowls, artisan chocolates, and in-flight snack boxes.
+          </p>
+        </div>
+
+        <!-- Food Category Filter Pills -->
+        <div class="food-tabs-container" data-reveal>
+          <div class="food-tabs" id="foodCategoryTabs">
+            <button class="food-tab-btn active" data-food-cat="all">All Gourmet Items</button>
+            <button class="food-tab-btn" data-food-cat="breakfast">Breakfast</button>
+            <button class="food-tab-btn" data-food-cat="lunch">Lunch & Dinner</button>
+            <button class="food-tab-btn" data-food-cat="snacks">Travel Snacks</button>
+            <button class="food-tab-btn" data-food-cat="desserts">Chocolates & Sweets</button>
+            <button class="food-tab-btn" data-food-cat="beverages">Hydration & Elixirs</button>
+          </div>
+        </div>
+
+        <!-- Food Items Grid -->
+        <div class="food-grid" id="foodGrid" data-reveal>
+          <!-- Rendered via JS -->
+        </div>
+
+        <!-- WHAT'S ON YOUR TRAY? Interactive Airplane Meal Tray Feature -->
+        <div class="tray-builder-section" id="trayBuilder" data-reveal>
+          <div class="tray-builder-header">
+            <div class="tray-badge">CUSTOM COMPOSER</div>
+            <h3 class="tray-title">WHAT'S ON YOUR TRAY?</h3>
+            <p class="tray-subtitle">Build your personalized first-class airline dining tray. Click items to slot them in!</p>
+          </div>
+
+          <div class="tray-layout">
+            <!-- Visual Airplane Meal Tray -->
+            <div class="airplane-meal-tray" id="airplaneMealTray">
+              <div class="tray-rim">
+                <div class="tray-slot" id="slotEntree" data-slot="entree">
+                  <div class="slot-header">MAIN ENTRÉE</div>
+                  <div class="slot-placeholder">
+                    <span class="slot-icon">🍱</span>
+                    <span class="slot-label">Select Entrée</span>
+                  </div>
+                </div>
+
+                <div class="tray-slot" id="slotSnack" data-slot="snack">
+                  <div class="slot-header">APPETIZER / SNACK</div>
+                  <div class="slot-placeholder">
+                    <span class="slot-icon">🥐</span>
+                    <span class="slot-label">Select Snack</span>
+                  </div>
+                </div>
+
+                <div class="tray-slot" id="slotDessert" data-slot="dessert">
+                  <div class="slot-header">SWEET DESSERT</div>
+                  <div class="slot-placeholder">
+                    <span class="slot-icon">🍰</span>
+                    <span class="slot-label">Select Dessert</span>
+                  </div>
+                </div>
+
+                <div class="tray-slot" id="slotBeverage" data-slot="beverage">
+                  <div class="slot-header">BEVERAGE</div>
+                  <div class="slot-placeholder">
+                    <span class="slot-icon">☕</span>
+                    <span class="slot-label">Select Drink</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Tray Summary & Add to Cart -->
+            <div class="tray-summary-box">
+              <div class="tray-summary-title">First Class Flight Tray Summary</div>
+              <ul class="tray-items-list" id="trayItemsList">
+                <li class="tray-empty-hint">Click selections below to fill all 4 tray slots.</li>
+              </ul>
+              
+              <div class="tray-nutrients-bar">
+                <div class="nutrient-pill">
+                  <span class="nut-label">Calories:</span>
+                  <span class="nut-value" id="trayCalories">0 kcal</span>
+                </div>
+                <div class="nutrient-pill">
+                  <span class="nut-label">Flight Prep:</span>
+                  <span class="nut-value" id="trayPrepTime">Immediate</span>
+                </div>
+              </div>
+
+              <div class="tray-pricing-row">
+                <span class="tray-price-label">Tray Combo Total:</span>
+                <span class="tray-total-price" id="trayTotalPrice">$0.00</span>
+              </div>
+
+              <button class="btn btn-primary btn-full" id="addTrayToCartBtn" disabled>
+                <span class="btn-text">ORDER FLIGHT TRAY TO GATE</span>
+              </button>
+              <button class="btn btn-text btn-full" id="clearTrayBtn">Reset Tray</button>
+            </div>
+          </div>
+
+          <!-- Tray Item Quick Picker Buttons -->
+          <div class="tray-picker-bar">
+            <span class="picker-lead">Quick Tray Additions:</span>
+            <div class="picker-buttons-flow" id="trayQuickPicker">
+              <!-- Populated via script.js -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 14. E1 — TRAVEL TOY WORLD -->
+    <section class="section toy-section" id="toy-world">
+      <div class="section-container">
+        <div class="toy-banner" data-reveal>
+          <div class="toy-clouds-bg" aria-hidden="true">
+            <span class="floating-toy t-balloon">🎈</span>
+            <span class="floating-toy t-plane">✈️</span>
+            <span class="floating-toy t-rocket">🚀</span>
+            <span class="floating-toy t-bear">🧸</span>
+            <span class="floating-toy t-dice">🎲</span>
+          </div>
+
+          <div class="toy-banner-content">
+            <div class="toy-badge">E1 — PLAY CONCOURSE</div>
+            <h2 class="toy-title">TRAVEL TOY WORLD</h2>
+            <p class="toy-desc">
+              Make family journeys unforgettable. Discover STEM flight kits, cuddly airline plushies, travel board games, and quiet entertainment packs for children of all ages.
+            </p>
+
+            <div class="toy-age-filters" id="toyAgeFilters">
+              <button class="toy-age-btn active" data-age="all">All Ages</button>
+              <button class="toy-age-btn" data-age="toddler">Ages 2-4 (Plush & Sensory)</button>
+              <button class="toy-age-btn" data-age="junior">Ages 5-8 (Travel Games & STEM)</button>
+              <button class="toy-age-btn" data-age="explorer">Ages 9+ (Robotics & Models)</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="toy-grid" id="toyGrid" data-reveal>
+          <!-- Populated via JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- 15. THE LUXURY TERMINAL -->
+    <section class="section luxury-section" id="luxury">
+      <div class="section-container">
+        <div class="luxury-hero-card" data-reveal>
+          <div class="luxury-gold-accent-line"></div>
+          <div class="luxury-card-inner">
+            <div class="luxury-badge">L1 — CONCOURSE VIP</div>
+            <h2 class="luxury-title">THE LUXURY TERMINAL</h2>
+            <p class="luxury-tagline">
+              Masterpieces in Horology, Italian Leather, Fine Fragrance & Private Reserve Spirits.
+            </p>
+            <p class="luxury-subtext">
+              Reserved for discerning passengers. Enjoy tax-exempt private room viewings, certified authentication certificates, and personal concierge escort to your aircraft.
+            </p>
+            <div class="luxury-perks-row">
+              <div class="luxury-perk">
+                <span class="perk-icon">✦</span>
+                <span class="perk-text">100% Certified Authentic</span>
+              </div>
+              <div class="luxury-perk">
+                <span class="perk-icon">✦</span>
+                <span class="perk-text">Private VIP Lounge Viewing</span>
+              </div>
+              <div class="luxury-perk">
+                <span class="perk-icon">✦</span>
+                <span class="perk-text">Global Concierge Warranty</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="luxury-showcase-grid" id="luxuryGrid" data-reveal>
+          <!-- Populated via JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- 17. AIRPORT SERVICES SECTION -->
+    <section class="section services-section" id="services">
+      <div class="section-container">
+        <div class="section-header text-center" data-reveal>
+          <div class="section-badge">PASSENGER ASSISTANCE</div>
+          <h2 class="section-title">PREMIUM AIRPORT SERVICES</h2>
+          <p class="section-subtitle">
+            Seamless travel amenities designed to elevate your airport experience before your flight departs.
+          </p>
+        </div>
+
+        <div class="services-grid" data-reveal>
+          <!-- Service 1 -->
+          <div class="service-card" data-tilt>
+            <div class="service-icon-box">
+              <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+                <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+              </svg>
+            </div>
+            <h3 class="service-title">Duty-Free Gate Delivery</h3>
+            <p class="service-desc">Shop anywhere in the terminal and have your purchases delivered straight to your boarding gate seat.</p>
+            <span class="service-tag">Complimentary for all orders</span>
+          </div>
+
+          <!-- Service 2 -->
+          <div class="service-card" data-tilt>
+            <div class="service-icon-box">
+              <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M18 8h1a4 4 0 0 1 0 8h-1"></path>
+                <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path>
+              </svg>
+            </div>
+            <h3 class="service-title">VIP Lounge Access</h3>
+            <p class="service-desc">Relax in serenity with chef dining, shower suites, sleeping pods, and high-speed satellite connectivity.</p>
+            <span class="service-tag">Passes from $45</span>
+          </div>
+
+          <!-- Service 3 -->
+          <div class="service-card" data-tilt>
+            <div class="service-icon-box">
+              <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="21" y1="12" x2="22" y2="12"></line>
+                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+              </svg>
+            </div>
+            <h3 class="service-title">Concourse WiFi & Power</h3>
+            <p class="service-desc">Ultra-fast Wi-Fi 7 with unlimited gigabit bandwidth and Qi wireless charging stations at every gate.</p>
+            <span class="service-tag">100% Free & Unlimited</span>
+          </div>
+
+          <!-- Service 4 -->
+          <div class="service-card" data-tilt>
+            <div class="service-icon-box">
+              <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                <circle cx="9" cy="7" r="4"></circle>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+              </svg>
+            </div>
+            <h3 class="service-title">Family & Kids Assistance</h3>
+            <p class="service-desc">Dedicated stroller loans, nursery lounges, play zones, and priority family boarding lanes.</p>
+            <span class="service-tag">Concourse Family Hub</span>
+          </div>
+
+          <!-- Service 5 -->
+          <div class="service-card" data-tilt>
+            <div class="service-icon-box">
+              <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="8" x2="12" y2="12"></line>
+                <line x1="12" y1="16" x2="12.01" y2="16"></line>
+              </svg>
+            </div>
+            <h3 class="service-title">Lost & Found Concierge</h3>
+            <p class="service-desc">24/7 luggage tracing with RFID tracking and cross-terminal repatriation delivery service.</p>
+            <span class="service-tag">Concourse Central Desk</span>
+          </div>
+
+          <!-- Service 6 -->
+          <div class="service-card" data-tilt>
+            <div class="service-icon-box">
+              <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+              </svg>
+            </div>
+            <h3 class="service-title">Accessibility & Special Care</h3>
+            <p class="service-desc">Full ADA compliant buggy escort, hearing loops, tactile paths, and dedicated sensory calming rooms.</p>
+            <span class="service-tag">Universal Inclusivity</span>
+          </div>
+        </div>
+
+        <div class="service-demo-callout" data-reveal>
+          <span class="callout-icon">ℹ️</span>
+          <span>Airport services shown represent architectural and retail concierge concepts. Real-time operations integrate via live airport API feeds.</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 23. EMRAT TRAVEL CLUB & BOARDING PASS GENERATOR -->
+    <section class="section travel-club-section" id="travel-club">
+      <div class="section-container">
+        <div class="travel-club-card" data-reveal>
+          <div class="club-left">
+            <div class="section-badge">EXCLUSIVE PRIVILEGES</div>
+            <h2 class="club-title">EMRAT TRAVEL CLUB</h2>
+            <p class="club-desc">
+              Subscribe to the premier airport newsletter and receive your personalized holographic **Digital First-Class Boarding Pass** featuring 15% off duty-free shopping and priority gate lounge notifications.
+            </p>
+
+            <form class="club-form" id="travelClubForm">
+              <div class="form-row">
+                <div class="form-field">
+                  <label for="clubName">Passenger Name</label>
+                  <input type="text" id="clubName" class="form-input" placeholder="e.g. Captain Alex Vance" required />
+                </div>
+                <div class="form-field">
+                  <label for="clubEmail">Email Address</label>
+                  <input type="email" id="clubEmail" class="form-input" placeholder="passenger@skyline.aero" required />
+                </div>
+              </div>
+              <button type="submit" class="btn btn-primary btn-glow">
+                <span class="btn-text">GENERATE MY BOARDING PASS</span>
+                <span class="btn-icon">✈</span>
+              </button>
+            </form>
+            <p class="club-disclaimer">No spam. Demo subscription. Connect newsletter service for live broadcast.</p>
+          </div>
+
+          <!-- Digital Boarding Pass Display -->
+          <div class="club-right">
+            <div class="boarding-pass" id="digitalBoardingPass">
+              <div class="pass-header">
+                <div class="pass-airline">EMRAT AIRWAYS</div>
+                <div class="pass-class">FIRST CLASS • 1A</div>
+              </div>
+              <div class="pass-body">
+                <div class="pass-route">
+                  <div class="route-point">
+                    <span class="city-code">EIA</span>
+                    <span class="city-name">EMRAT</span>
+                  </div>
+                  <div class="route-flight-symbol">
+                    <span class="dash-line"></span>
+                    <span class="plane-sym">✈</span>
+                    <span class="dash-line"></span>
+                  </div>
+                  <div class="route-point text-right">
+                    <span class="city-code">GLOBAL</span>
+                    <span class="city-name">WORLD</span>
+                  </div>
+                </div>
+
+                <div class="pass-details-grid">
+                  <div class="p-detail">
+                    <span class="p-label">PASSENGER</span>
+                    <span class="p-val" id="passPassengerName">VALUED TRAVELER</span>
+                  </div>
+                  <div class="p-detail">
+                    <span class="p-label">FLIGHT</span>
+                    <span class="p-val">EA-2026</span>
+                  </div>
+                  <div class="p-detail">
+                    <span class="p-label">GATE</span>
+                    <span class="p-val">A-01 VIP</span>
+                  </div>
+                  <div class="p-detail">
+                    <span class="p-label">VOUCHER CODE</span>
+                    <span class="p-val gold" id="passVoucherCode">EMRAT15VIP</span>
+                  </div>
+                </div>
+
+                <div class="pass-barcode-wrap">
+                  <div class="barcode-bars"></div>
+                  <span class="barcode-num">EIA-8849-CLUB-PASS-2026</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 24. CONTACT & CONCOURSE CONCIERGE -->
+    <section class="section contact-section" id="contact">
+      <div class="section-container">
+        <div class="section-header text-center" data-reveal>
+          <div class="section-badge">TERMINAL CONCIERGE</div>
+          <h2 class="section-title">CONCOURSE ASSISTANCE DESK</h2>
+          <p class="section-subtitle">
+            Need special assistance, custom duty-free orders, or terminal navigation advice? Our concierge team is at your command.
+          </p>
+        </div>
+
+        <div class="contact-card-wrap" data-reveal>
+          <div class="contact-info-panel">
+            <h3 class="contact-panel-title">Central Concourse Desk</h3>
+            <p class="contact-panel-desc">Located at Terminal 3, Central Atrium near Gate B01.</p>
+            
+            <div class="contact-methods">
+              <div class="c-method">
+                <span class="c-icon">📍</span>
+                <div>
+                  <strong>Location:</strong>
+                  <span>EMRAT International Airport, Concourse 3A</span>
+                </div>
+              </div>
+              <div class="c-method">
+                <span class="c-icon">☎️</span>
+                <div>
+                  <strong>Terminal Hotline:</strong>
+                  <span>+1 (800) 555-EMRAT (Demo)</span>
+                </div>
+              </div>
+              <div class="c-method">
+                <span class="c-icon">📧</span>
+                <div>
+                  <strong>Digital Inquiries:</strong>
+                  <span>concierge@emratairport.com</span>
+                </div>
+              </div>
+              <div class="c-method">
+                <span class="c-icon">⏱</span>
+                <div>
+                  <strong>Operating Hours:</strong>
+                  <span>24/7/365 Non-Stop Operations</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="contact-form-panel">
+            <form class="contact-form" id="conciergeContactForm">
+              <div class="form-field">
+                <label for="contactName">Your Full Name</label>
+                <input type="text" id="contactName" class="form-input" placeholder="e.g. Elena Rostova" required />
+              </div>
+              <div class="form-field">
+                <label for="contactEmail">Email Address</label>
+                <input type="email" id="contactEmail" class="form-input" placeholder="elena@domain.com" required />
+              </div>
+              <div class="form-field">
+                <label for="contactSubject">Inquiry Department</label>
+                <select id="contactSubject" class="form-select">
+                  <option value="shopping">Duty-Free Shopping & Gate Delivery</option>
+                  <option value="food">Gourmet Food Ordering & Pre-Flight Trays</option>
+                  <option value="lounge">VIP Lounge Booking & Private Viewing</option>
+                  <option value="accessibility">Special Accessibility Assistance</option>
+                  <option value="feedback">General Terminal Feedback</option>
+                </select>
+              </div>
+              <div class="form-field">
+                <label for="contactMessage">Your Message</label>
+                <textarea id="contactMessage" class="form-textarea" rows="4" placeholder="How may our concierge assist your travel today?" required></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary btn-full">
+                <span class="btn-text">TRANSMIT TO CONCIERGE</span>
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 25. FAQ ACCORDION -->
+    <section class="section faq-section" id="faq">
+      <div class="section-container">
+        <div class="section-header text-center" data-reveal>
+          <div class="section-badge">PASSENGER GUIDANCE</div>
+          <h2 class="section-title">FREQUENTLY ASKED QUESTIONS</h2>
+          <p class="section-subtitle">
+            Essential knowledge on airport shopping, security allowances, product manuals, and gate deliveries.
+          </p>
+        </div>
+
+        <div class="faq-accordion-container" id="faqAccordion" data-reveal>
+          <!-- Item 1 -->
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              <span>What can I shop for at EMRAT Airport?</span>
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>EMRAT Airport offers a comprehensive duty-free ecosystem spanning 8 luxury concourses: STEM and plush toys (E1), international gourmet food and meal trays (D1), aviation apparel (F1), certified travel essentials (T1), state-of-the-art audio & electronics (E2), collectible souvenirs (G1), high-altitude skincare (B1), and haute horlogerie & luxury leather (L1).</p>
+            </div>
+          </div>
+
+          <!-- Item 2 -->
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              <span>How do I search for specific products?</span>
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>You can use our global search bar (press <code>/</code> anywhere on the page), filter by category code (e.g., E1, D1, L1), adjust the maximum price range slider, or select traveler personas such as "Business Traveler" or "Family Explorer" to view instant curated recommendations.</p>
+            </div>
+          </div>
+
+          <!-- Item 3 -->
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              <span>Can I view product manuals before purchasing?</span>
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>Yes! Every item in our catalog features a dedicated "View Manual" button. Our interactive Product Manual System allows you to review full instructions, flight safety protocols, battery rules, care instructions, and travel specifications directly on your screen or mobile device.</p>
+            </div>
+          </div>
+
+          <!-- Item 4 -->
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              <span>Can I save products to a Wishlist?</span>
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>Simply click the heart icon on any product card or inside the product details modal. Your saved items are stored securely in your browser's LocalStorage and can be accessed at any time via the heart button in the top navigation bar.</p>
+            </div>
+          </div>
+
+          <!-- Item 5 -->
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              <span>How does the Shopping Cart and Gate Delivery work?</span>
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>Adding items to your slide-out cart persists your selections via LocalStorage. During demonstration checkout, you can select whether you'd like your sealed, security-tamper-evident bags delivered directly to your boarding gate or collected at the Central Concourse Duty-Free Desk.</p>
+            </div>
+          </div>
+
+          <!-- Item 6 -->
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              <span>Is online payment processed on this website?</span>
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>This is a frontend demonstration concept of EMRAT AIRPORT.com. No actual financial transactions or credit card charges occur on this demo site. To enable live commercial transactions, an authorized airport merchant payment gateway can be connected.</p>
+            </div>
+          </div>
+
+          <!-- Item 7 -->
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              <span>Can I use the website seamlessly on mobile devices?</span>
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>Absolutely. EMRAT AIRPORT.com is engineered with responsive layouts tailored for 4K desktop monitors, laptops, tablets, and smartphones. On mobile screens, product cards, filters, and manual readers automatically transform into touch-friendly full-screen modal sheets.</p>
+            </div>
+          </div>
+
+          <!-- Item 8 -->
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              <span>Are airport flight times and services real-time?</span>
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>The Flight Information Display System (FIDS) board presents simulated demonstration flight schedules for international destinations (Dubai, Tokyo, London, Singapore, New York, Paris). A real-world deployment connects to airport SITA/AODB flight telemetry feeds.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- 26. FOOTER -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-top">
+        <div class="footer-brand-col">
+          <a href="#hero" class="brand-logo footer-logo">
+            <div class="logo-symbol">
+              <svg viewBox="0 0 48 48" fill="none" class="logo-svg">
+                <path d="M4 24L20 20L44 8L36 24L44 40L20 28L4 24Z" fill="url(#footerLogoGrad)" />
+                <circle cx="36" cy="24" r="2" fill="#E6C687" />
+                <defs>
+                  <linearGradient id="footerLogoGrad" x1="4" y1="8" x2="44" y2="40" gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#E6C687" />
+                    <stop offset="0.5" stop-color="#FFFFFF" />
+                    <stop offset="1" stop-color="#00E5FF" />
+                  </linearGradient>
+                </defs>
+              </svg>
+            </div>
+            <div class="logo-text-group">
+              <span class="logo-brand">EMRAT</span>
+              <span class="logo-sub">AIRPORT<span class="logo-tld">.COM</span></span>
+            </div>
+          </a>
+          <p class="footer-tagline">
+            “Explore. Fly. Shop. Eat. Experience.”<br />
+            Redefining the international airport digital journey.
+          </p>
+          <div class="footer-social-links">
+            <a href="#" class="social-btn" aria-label="Aviation Network">✈</a>
+            <a href="#" class="social-btn" aria-label="Instagram">📸</a>
+            <a href="#" class="social-btn" aria-label="LinkedIn">💼</a>
+            <a href="#" class="social-btn" aria-label="Twitter / X">𝕏</a>
+          </div>
+        </div>
+
+        <div class="footer-nav-col">
+          <h4 class="footer-heading">Concourse Directory</h4>
+          <ul class="footer-links">
+            <li><a href="#categories">E1 — Travel Toys</a></li>
+            <li><a href="#food-market">D1 — Food Market</a></li>
+            <li><a href="#catalog">F1 — Fashion</a></li>
+            <li><a href="#catalog">T1 — Travel Essentials</a></li>
+            <li><a href="#catalog">E2 — Electronics</a></li>
+            <li><a href="#luxury">L1 — The Luxury Terminal</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-nav-col">
+          <h4 class="footer-heading">Passenger Services</h4>
+          <ul class="footer-links">
+            <li><a href="#journey">Journey Progression</a></li>
+            <li><a href="#flight-board">FIDS Flight Board</a></li>
+            <li><a href="#services">VIP Lounge Booking</a></li>
+            <li><a href="#services">Gate Delivery Program</a></li>
+            <li><a href="#travel-club">Digital Boarding Pass</a></li>
+            <li><a href="#contact">Concierge Desk</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-nav-col">
+          <h4 class="footer-heading">Terminal Assistance</h4>
+          <ul class="footer-links">
+            <li><a href="#faq">Shopping FAQs</a></li>
+            <li><a href="#contact">Lost & Found Form</a></li>
+            <li><a href="#services">TSA Liquid Compliance</a></li>
+            <li><a href="#services">Accessibility Facilities</a></li>
+            <li><a href="#contact">Contact Concierge</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div class="footer-legal">
+          <p>© 2026 EMRAT AIRPORT.com — Demo/Concept Website. All trademarks and brand names belong to their respective holders.</p>
+          <p class="demo-warning-text">Demonstration notice: Real-time airport operations, payment gateways, and live flight telemetry require backend API integrations.</p>
+        </div>
+        <div class="footer-badges">
+          <span class="f-badge">TERMINAL 3 CERTIFIED</span>
+          <span class="f-badge">SSL ENCRYPTED</span>
+          <span class="f-badge">DUTY-FREE VERIFIED</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- 12. SLIDE-OUT SHOPPING CART DRAWER -->
+  <div class="cart-drawer-overlay" id="cartOverlay" aria-hidden="true"></div>
+  <aside class="cart-drawer" id="cartDrawer" role="dialog" aria-modal="true" aria-label="Shopping Cart">
+    <div class="cart-header">
+      <div class="cart-header-title-wrap">
+        <h3 class="cart-drawer-title">Airport Shopping Cart</h3>
+        <span class="cart-items-counter" id="cartDrawerCount">0 Items</span>
+      </div>
+      <button class="cart-close-btn" id="closeCartBtn" aria-label="Close Shopping Cart">✕</button>
+    </div>
+
+    <!-- Free Gate Delivery Threshold Bar -->
+    <div class="delivery-threshold-bar">
+      <div class="threshold-text">
+        <span id="thresholdStatusText">Add $100 for Free VIP Gate Delivery</span>
+      </div>
+      <div class="threshold-track">
+        <div class="threshold-progress" id="thresholdProgress"></div>
+      </div>
+    </div>
+
+    <!-- Cart Items Scroll List -->
+    <div class="cart-items-container" id="cartItemsContainer">
+      <!-- Populated via JS -->
+    </div>
+
+    <!-- Cart Footer & Summary -->
+    <div class="cart-footer" id="cartFooter">
+      <div class="cart-summary-lines">
+        <div class="summary-line">
+          <span>Duty-Free Subtotal:</span>
+          <span id="cartSubtotal">$0.00</span>
+        </div>
+        <div class="summary-line">
+          <span>Airport Duty-Free Savings:</span>
+          <span class="gold-text" id="cartSavings">-$0.00</span>
+        </div>
+        <div class="summary-line">
+          <span>Gate Delivery Fee:</span>
+          <span id="cartDeliveryFee">FREE</span>
+        </div>
+        <div class="summary-line total-line">
+          <span>Estimated Total:</span>
+          <span id="cartGrandTotal">$0.00</span>
+        </div>
+      </div>
+
+      <div class="cart-action-btns">
+        <button class="btn btn-secondary btn-full" id="continueShoppingBtn">CONTINUE SHOPPING</button>
+        <button class="btn btn-primary btn-full btn-glow" id="checkoutBtn">
+          <span>PROCEED TO GATE CHECKOUT</span>
+        </button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- 8. PRODUCT DETAIL MODAL (Multi-Tab) -->
+  <div class="modal-overlay" id="productModalOverlay" aria-hidden="true">
+    <div class="product-modal-dialog" role="dialog" aria-modal="true" aria-label="Product Details" id="productModalDialog">
+      <button class="modal-close-btn" id="closeProductModalBtn" aria-label="Close Modal">✕</button>
+      
+      <div class="product-modal-body" id="productModalBody">
+        <!-- Rendered dynamically by script.js -->
+      </div>
+    </div>
+  </div>
+
+  <!-- 9. PRODUCT MANUAL VIEWER MODAL -->
+  <div class="modal-overlay" id="manualModalOverlay" aria-hidden="true">
+    <div class="manual-modal-dialog" role="dialog" aria-modal="true" aria-label="Product Manual Viewer" id="manualModalDialog">
+      <div class="manual-modal-header">
+        <div class="manual-header-titles">
+          <div class="manual-meta-code" id="manualCategoryCode">E2 — ELECTRONICS</div>
+          <h3 class="manual-product-title" id="manualProductTitle">Product Manual</h3>
+        </div>
+        <div class="manual-header-actions">
+          <button class="manual-action-btn" id="printManualBtn" title="Print Manual">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="6 9 6 2 18 2 18 9"></polyline>
+              <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+              <rect x="6" y="14" width="12" height="8"></rect>
+            </svg>
+            Print Guide
+          </button>
+          <button class="modal-close-btn" id="closeManualModalBtn" aria-label="Close Manual">✕</button>
+        </div>
+      </div>
+
+      <!-- Manual Step Progress Indicator -->
+      <div class="manual-steps-progress">
+        <div class="manual-step-item active" data-manual-step="1">
+          <span class="m-step-num">1</span>
+          <span class="m-step-name">Overview</span>
+        </div>
+        <div class="manual-step-item" data-manual-step="2">
+          <span class="m-step-num">2</span>
+          <span class="m-step-name">How to Use</span>
+        </div>
+        <div class="manual-step-item" data-manual-step="3">
+          <span class="m-step-num">3</span>
+          <span class="m-step-name">Important Info</span>
+        </div>
+        <div class="manual-step-item" data-manual-step="4">
+          <span class="m-step-num">4</span>
+          <span class="m-step-name">Care Instructions</span>
+        </div>
+        <div class="manual-step-item" data-manual-step="5">
+          <span class="m-step-num">5</span>
+          <span class="m-step-name">In-Flight Rules</span>
+        </div>
+        <div class="manual-step-item" data-manual-step="6">
+          <span class="m-step-num">6</span>
+          <span class="m-step-name">Safety & Warranty</span>
+        </div>
+      </div>
+
+      <!-- Manual Content Body -->
+      <div class="manual-content-view" id="manualContentView">
+        <!-- Rendered via JS -->
+      </div>
+
+      <!-- Manual Controls (Prev / Next / Progress) -->
+      <div class="manual-footer-controls">
+        <button class="btn btn-secondary" id="manualPrevBtn" disabled>← Previous Section</button>
+        <span class="manual-step-counter" id="manualStepCounter">Section 1 of 6</span>
+        <button class="btn btn-primary" id="manualNextBtn">Next Section →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- CHECKOUT MODAL (DEMO AIRPORT GATE PICKUP) -->
+  <div class="modal-overlay" id="checkoutModalOverlay" aria-hidden="true">
+    <div class="checkout-modal-dialog" role="dialog" aria-modal="true" aria-label="Airport Gate Delivery Checkout">
+      <button class="modal-close-btn" id="closeCheckoutModalBtn" aria-label="Close Checkout">✕</button>
+
+      <div class="checkout-body">
+        <div class="checkout-badge">AIRPORT CONCOURSE CHECKOUT</div>
+        <h3 class="checkout-title">Confirm Gate Delivery & Duty-Free Pick-up</h3>
+        <p class="checkout-subtitle">Verify your flight number and gate for guaranteed personal bag delivery.</p>
+
+        <form class="checkout-form" id="checkoutForm">
+          <div class="form-row">
+            <div class="form-field">
+              <label for="passengerFullName">Passenger Full Name</label>
+              <input type="text" id="passengerFullName" class="form-input" placeholder="e.g. Maya Chen" required />
+            </div>
+            <div class="form-field">
+              <label for="flightNumber">Flight Number</label>
+              <input type="text" id="flightNumber" class="form-input" placeholder="e.g. EA-202" required />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-field">
+              <label for="departureGate">Departure Gate</label>
+              <select id="departureGate" class="form-select">
+                <option value="Gate A01-A12">Concourse A (Gates A01 - A12)</option>
+                <option value="Gate B01-B20" selected>Concourse B (Gates B01 - B20)</option>
+                <option value="Gate C01-C18">Concourse C (Gates C01 - C18)</option>
+                <option value="Gate D01-D10">Concourse D (Gates D01 - D10)</option>
+                <option value="VIP Lounge">First Class Emirates Lounge Desk</option>
+              </select>
+            </div>
+            <div class="form-field">
+              <label for="seatNumber">Seat Number (Optional)</label>
+              <input type="text" id="seatNumber" class="form-input" placeholder="e.g. 12A" />
+            </div>
+          </div>
+
+          <div class="form-field">
+            <label for="checkoutNotes">Special Delivery Instructions</label>
+            <input type="text" id="checkoutNotes" class="form-input" placeholder="e.g. Fragile items gift-wrapped, chilled beverages" />
+          </div>
+
+          <div class="checkout-summary-mini">
+            <div class="cs-row">
+              <span>Order Subtotal:</span>
+              <span id="csSubtotal">$0.00</span>
+            </div>
+            <div class="cs-row">
+              <span>Gate Delivery:</span>
+              <span class="gold-text">COMPLIMENTARY</span>
+            </div>
+            <div class="cs-row total">
+              <span>Total Due:</span>
+              <span id="csTotal">$0.00</span>
+            </div>
+          </div>
+
+          <div class="demo-payment-alert">
+            <span>ℹ Demonstration Order: No real payment or charges will be processed. Clicking below places a simulated order.</span>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-full btn-glow">
+            <span>CONFIRM DEMO AIRPORT ORDER</span>
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- ORDER CONFIRMATION MODAL -->
+  <div class="modal-overlay" id="orderConfirmOverlay" aria-hidden="true">
+    <div class="confirm-modal-dialog" role="dialog" aria-modal="true" aria-label="Order Confirmation">
+      <button class="modal-close-btn" id="closeConfirmModalBtn" aria-label="Close Confirmation">✕</button>
+      <div class="confirm-modal-content">
+        <div class="confirm-check-icon">✓</div>
+        <h3 class="confirm-title">GATE ORDER CONFIRMED!</h3>
+        <p class="confirm-desc" id="confirmSummaryText">
+          Your sealed duty-free parcel has been scheduled for gate delivery. Our concourse runner will meet you at your boarding gate with your tamper-evident bag.
+        </p>
+        <div class="confirm-receipt" id="confirmReceiptBox"></div>
+        <button class="btn btn-primary" id="confirmContinueBtn">RETURN TO CONCOURSE</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- QUICK SEARCH OVERLAY MODAL -->
+  <div class="modal-overlay" id="searchOverlay" aria-hidden="true">
+    <div class="search-modal-dialog" role="dialog" aria-modal="true" aria-label="Quick Concourse Search">
+      <div class="search-modal-header">
+        <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+        <input 
+          type="text" 
+          id="modalSearchInput" 
+          class="modal-search-input" 
+          placeholder="Type to search electronics, perfumes, toys, meals, codes (e.g. E1, D1)..." 
+          autofocus 
+        />
+        <button class="modal-close-btn" id="closeSearchModalBtn" aria-label="Close Search">✕</button>
+      </div>
+      <div class="quick-search-tags">
+        <span class="qs-lead">Popular:</span>
+        <button class="qs-tag" data-search-term="Headphones">Headphones</button>
+        <button class="qs-tag" data-search-term="Truffle">Truffle</button>
+        <button class="qs-tag" data-search-term="Pillow">Pillow</button>
+        <button class="qs-tag" data-search-term="Watch">Watch</button>
+        <button class="qs-tag" data-search-term="Drone">Drone</button>
+        <button class="qs-tag" data-search-term="Adapter">Adapter</button>
+      </div>
+      <div class="search-results-list" id="searchResultsList">
+        <div class="search-prompt-hint">Start typing above to search our 40+ duty-free catalog items instantly.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICATION CONTAINER -->
+  <div class="toast-container" id="toastContainer" aria-live="polite" aria-atomic="true"></div>
+
+  <!-- Back To Top Floating Button -->
+  <button class="back-to-top-btn" id="backToTopBtn" aria-label="Back to top" title="Back to top">
+    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M18 15l-6-6-6 6"/>
+    </svg>
+  </button>
+
+  <!-- Main JavaScript File -->
+  <script src="script.js"></script>
+</body>
+</html>
